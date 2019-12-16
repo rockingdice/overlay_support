@@ -23,13 +23,14 @@ class TopSlideNotification extends StatelessWidget {
 ///can be dismiss by left or right slide
 class SlideDismissible extends StatelessWidget {
   final Widget child;
-
+  final DismissDirection dismissDirection;
   final bool enable;
 
   const SlideDismissible({
     @required Key key,
     @required this.child,
     @required this.enable,
+    this.dismissDirection = DismissDirection.horizontal,
   }) : super(key: key);
 
   @override
@@ -38,6 +39,7 @@ class SlideDismissible extends StatelessWidget {
     return Dismissible(
       child: child,
       key: key,
+      direction: dismissDirection,
       onDismissed: (direction) {
         OverlaySupportEntry.of(context, requireForDebug: this).dismiss(animate: false);
       },
